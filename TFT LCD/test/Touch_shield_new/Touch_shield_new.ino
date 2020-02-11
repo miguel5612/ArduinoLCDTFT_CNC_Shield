@@ -4,7 +4,6 @@
 // and rotation.
 // Run the TouchScreen_Calibr_native sketch for calibration of your shield
 
-#define SUPPORT_8347D
 #include <MCUFRIEND_kbv.h>
 MCUFRIEND_kbv tft;       // hard-wired for UNO shields anyway.
 // Edit MCUFRIEND_kbv.cpp:  #define SUPPORT_8347D
@@ -23,7 +22,7 @@ TSPoint tp;
 int16_t BOXSIZE;
 int16_t PENRADIUS = 1;
 uint16_t ID, oldcolor, currentcolor;
-uint8_t Orientation = 0;    //PORTRAIT
+uint8_t Orientation = 1;    //PORTRAIT
 
 // Assign human-readable names to some common 16-bit color values:
 #define BLACK   0x0000
