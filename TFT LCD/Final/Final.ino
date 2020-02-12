@@ -45,41 +45,136 @@ void setup() {
   BOXSIZE = tft.width() / 7;
   tft.fillScreen(BLACK);
 
+  //Boton ir motor 1
+  tft.setRotation(3);
+  tft.setCursor(10, 50);
+  tft.setTextSize(1);
+  tft.print("Prensa: ");
+  tft.drawRect(60, 35, BOXSIZE, BOXSIZE, WHITE);
+  
+  tft.setCursor(120, 50);
+  tft.drawRect(160, 35, BOXSIZE, BOXSIZE, WHITE);
+  tft.print("Boom: ");
+
+  tft.setCursor(220, 50);
+  tft.print("Zoom: ");
+  tft.drawRect(260, 35, BOXSIZE, BOXSIZE, WHITE);
+  
+  tft.setCursor(10, 80);
+  tft.print("Altura: ");
+  tft.drawRect(60, 65, BOXSIZE, BOXSIZE, WHITE);
+  
+  tft.setRotation(0);
+
+
+  //Estadisticas
+  tft.setRotation(3);
+  tft.setCursor(65, 50);
+  tft.print(123);
+
+  tft.setCursor(165, 50);
+  tft.print(123);
+
+  tft.setCursor(265, 50);
+  tft.print(123);
+
+  tft.setCursor(65, 80);
+  tft.print(123);
+  
+  tft.setRotation(0);
+
+
   
     // Boton Izquierdo inferior
     tft.drawRect(200, 225, BOXSIZE, BOXSIZE, WHITE);
     tft.fillRect(200, 225, BOXSIZE, BOXSIZE, RED);
-    
+
+    tft.setRotation(1);
+    tft.setCursor(235, 20);
+    tft.setTextColor(WHITE);
+    tft.setTextSize(3);
+    tft.print("^");
+    tft.setRotation(0);
+
     // Boton Izquierdo superior
     tft.drawRect(120, 225, BOXSIZE, BOXSIZE, WHITE);
     tft.fillRect(120, 225, BOXSIZE, BOXSIZE, RED);
+    
+    tft.setRotation(3);
+    tft.setCursor(70, 130);
+    tft.setTextColor(WHITE);
+    tft.setTextSize(3);
+    tft.print("^");
+    tft.setRotation(0);
+        
     // Boton Izquierdo izquierdo
     tft.drawRect(160, 270, BOXSIZE, BOXSIZE, WHITE);
-    //tft.fillRect(160, 270, BOXSIZE, BOXSIZE, GREEN);
+    tft.fillRect(160, 270, BOXSIZE, BOXSIZE, GREEN);
 
-    tft.setRotation(3);
-    tft.setCursor(30, 140);
+    tft.setRotation(2);
+    tft.setCursor(55, 30);
     tft.setTextColor(WHITE);
-    tft.print("V");
+    tft.setTextSize(3);
+    tft.print("^");
     tft.setRotation(0);
     
     // Boton Izquierdo derecho
     tft.drawRect(160, 180, BOXSIZE, BOXSIZE, WHITE);
     tft.fillRect(160, 180, BOXSIZE, BOXSIZE, GREEN);
-
+    
+    tft.setRotation(4);
+    tft.setCursor(170, 190);
+    tft.setTextColor(WHITE);
+    tft.setTextSize(3);
+    tft.print("^");
+    tft.setRotation(0);
+    
     // Boton derecho inferior
     tft.drawRect(200, 60, BOXSIZE, BOXSIZE, WHITE);
     tft.fillRect(200, 60, BOXSIZE, BOXSIZE, CYAN);
+    
+    tft.setRotation(1);
+    tft.setCursor(70, 20);
+    tft.setTextColor(WHITE);
+    tft.setTextSize(3);
+    tft.print("^");
+    tft.setRotation(0);
+    
     // Boton derecho superior
     tft.drawRect(120, 60, BOXSIZE, BOXSIZE, WHITE);
     tft.fillRect(120, 60, BOXSIZE, BOXSIZE, CYAN);
+
+    tft.setRotation(3);
+    tft.setCursor(235, 130);
+    tft.setTextColor(WHITE);
+    tft.setTextSize(3);
+    tft.print("^");
+    tft.setRotation(0);
+    
     // Boton derecho izquierdo
     tft.drawRect(160, 106, BOXSIZE, BOXSIZE, WHITE);
     tft.fillRect(160, 106, BOXSIZE, BOXSIZE, MAGENTA);
+    
+    tft.setRotation(2);
+    tft.setCursor(55, 190);
+    tft.setTextColor(WHITE);
+    tft.setTextSize(3);
+    tft.print("^");
+    tft.setRotation(0);
+    
     // Boton derecho derecho
     tft.drawRect(160, 20, BOXSIZE, BOXSIZE, WHITE);
     tft.fillRect(160, 20, BOXSIZE, BOXSIZE, MAGENTA);
 
+    tft.setRotation(4);
+    tft.setCursor(170, 30);
+    tft.setTextColor(WHITE);
+    tft.setTextSize(3);
+    tft.print("^");
+    tft.setRotation(0);
+    
+
+    
     tft.setRotation(3);
     tft.setCursor(0, 0);
     tft.setTextSize(2);
