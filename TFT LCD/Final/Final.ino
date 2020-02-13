@@ -21,6 +21,11 @@ int16_t PENRADIUS = 1;
 uint16_t ID, oldcolor, currentcolor;
 uint8_t Orientation = 0;    //PORTRAIT
 
+int prensa = 123;
+int boom = 123;
+int zoom = 123;
+int altura = 123;
+
 // Assign human-readable names to some common 16-bit color values:
 #define BLACK   0x0000
 #define BLUE    0x001F
@@ -70,16 +75,16 @@ void setup() {
   //Estadisticas
   tft.setRotation(3);
   tft.setCursor(65, 50);
-  tft.print(123);
+  tft.print(prensa);
 
   tft.setCursor(165, 50);
-  tft.print(123);
+  tft.print(boom);
 
   tft.setCursor(265, 50);
-  tft.print(123);
+  tft.print(zoom);
 
   tft.setCursor(65, 80);
-  tft.print(123);
+  tft.print(altura);
   
   tft.setRotation(0);
 
@@ -189,5 +194,52 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  while (1) {
+        tp = ts.getPoint();
+        pinMode(XM, OUTPUT);
+        pinMode(YP, OUTPUT);
 
+        
+        if(tp.x > 500 & tp.x < 600 & tp.y > 700 & tp.y < 800)
+        {
+          delay(50);
+          if(tp.x > 500 & tp.x < 600 & tp.y > 700 & tp.y < 800) Serial.println("Arriba izquierdo");
+        }
+        else if(tp.x > 220 & tp.x < 300 & tp.y > 755 & tp.y < 790)
+        {
+          delay(50);
+          if(tp.x > 220 & tp.x < 300 & tp.y > 755 & tp.y < 790) Serial.println("Abajo izquierdo");
+        }
+        else if(tp.x > 300 & tp.x < 400 & tp.y > 800 & tp.y < 900)
+        {
+          delay(50);
+          if(tp.x > 300 & tp.x < 400 & tp.y > 800 & tp.y < 900) Serial.println("Izquierdo izquierdo");
+        }
+        else if(tp.x > 300 & tp.x < 400 & tp.y > 600 & tp.y < 700)
+        {
+          delay(50);
+          if(tp.x > 300 & tp.x < 400 & tp.y > 600 & tp.y < 700) Serial.println("Derecho izquierdo");
+        }
+        else if(tp.x > 200 & tp.x < 280 & tp.y > 300 & tp.y < 380)
+        {
+          delay(50);
+          if(tp.x > 200 & tp.x < 280 & tp.y > 300 & tp.y < 380) Serial.println("Abajo Derecho");
+        }
+        else if(tp.x > 500 & tp.x < 560 & tp.y > 300 & tp.y < 350)
+        {
+          delay(50);
+          if(tp.x > 500 & tp.x < 560 & tp.y > 300 & tp.y < 350) Serial.println("Arriba Derecho");
+        }
+        else if(tp.x > 380 & tp.x < 490 & tp.y > 400 & tp.y < 510)
+        {
+          delay(50);
+          if(tp.x > 380 & tp.x < 490 & tp.y > 400 & tp.y < 510) Serial.println("Izquierdo Derecho");
+        }
+        else if(tp.x > 380 & tp.x < 450 & tp.y > 200 & tp.y < 300)
+        {
+          delay(50);
+          if(tp.x > 380 & tp.x < 450 & tp.y > 200 & tp.y < 300) Serial.println("Derecho Derecho");
+        }
+        Serial.println("Punto x: " + String(tp.x) + "Punto y: " + String(tp.y)); 
+  }
 }
