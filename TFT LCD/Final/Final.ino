@@ -204,31 +204,43 @@ void loop() {
         {
           delay(50);
           if(tp.x > 500 & tp.x < 600 & tp.y > 700 & tp.y < 800) Serial.println("Arriba izquierdo");
+          // X +
+          Serial.println("G21G91G1X1F10");
         }
         else if(tp.x > 220 & tp.x < 300 & tp.y > 755 & tp.y < 790)
         {
           delay(50);
           if(tp.x > 220 & tp.x < 300 & tp.y > 755 & tp.y < 790) Serial.println("Abajo izquierdo");
+          // X -
+          Serial.println("G21G91G1X-1F10");
         }
         else if(tp.x > 300 & tp.x < 400 & tp.y > 800 & tp.y < 900)
         {
           delay(50);
           if(tp.x > 300 & tp.x < 400 & tp.y > 800 & tp.y < 900) Serial.println("Izquierdo izquierdo");
+          // Y + 
+          Serial.println("G21G91G1Y1F10");
         }
         else if(tp.x > 300 & tp.x < 400 & tp.y > 600 & tp.y < 700)
         {
           delay(50);
           if(tp.x > 300 & tp.x < 400 & tp.y > 600 & tp.y < 700) Serial.println("Derecho izquierdo");
+          // Y -
+          Serial.println("G21G91G1Y-1F10");
         }
         else if(tp.x > 200 & tp.x < 280 & tp.y > 300 & tp.y < 380)
         {
           delay(50);
-          if(tp.x > 200 & tp.x < 280 & tp.y > 300 & tp.y < 380) Serial.println("Abajo Derecho");
+          if(tp.x > 200 & tp.x < 280 & tp.y > 300 & tp.y < 380) Serial.println("Abajo Derecho"); 
+          // Z +
+          Serial.println("G21G91G1Z1F10");
         }
         else if(tp.x > 500 & tp.x < 560 & tp.y > 300 & tp.y < 350)
         {
           delay(50);
           if(tp.x > 500 & tp.x < 560 & tp.y > 300 & tp.y < 350) Serial.println("Arriba Derecho");
+          // Z - 
+          Serial.println("G21G91G1Z-1F10");
         }
         else if(tp.x > 380 & tp.x < 490 & tp.y > 400 & tp.y < 510)
         {
