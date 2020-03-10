@@ -15,6 +15,7 @@ TSPoint tp;
 
 #define MINPRESSURE 200
 #define MAXPRESSURE 1000
+#define timeDelayBetweenGCode 300
 
 int16_t BOXSIZE;
 int16_t PENRADIUS = 1;
@@ -44,8 +45,8 @@ void setup() {
 
   // Inicializacion del puerto serie 
   Serial.begin(9600);
-  Serial.print("Tft Width: "); Serial.print(tft.width()); Serial.println(" px");
-  Serial.print("Tft Height: "); Serial.print(tft.height()); Serial.println(" px");
+  //Serial.print("Tft Width: "); Serial.print(tft.width()); Serial.println(" px");
+  //Serial.print("Tft Height: "); Serial.print(tft.height()); Serial.println(" px");
   
   graficaInicial();
     
@@ -62,70 +63,69 @@ void loop() {
         //Serial.print("Y: ");Serial.println(tp.y);
         if(tp.x > 750 & tp.x < 850 & tp.y > 750 & tp.y < 850)
         {
-          Serial.println("Modo prensa");  
+          //Serial.println("Modo prensa");  
           unEje("X");        
         }
         else if(tp.x > 700 & tp.x < 750 & tp.y > 450 & tp.y < 550)
         {
-          Serial.println("Modo Boom");
+          //Serial.println("Modo Boom");
           unEje("Y");
         }
         else if(tp.x > 750 & tp.x < 850 & tp.y > 250 & tp.y < 350)
         {
-          Serial.println("Modo Zoom");
+          //Serial.println("Modo Zoom");
           unEje("Z");
         }
         else if(tp.x > 650 & tp.x < 750 & tp.y > 730 & tp.y < 850)
         {
-          Serial.println("Modo Altura");
+          //Serial.println("Modo Altura");
           unEje("A");
         }
-        if(tp.x > 500 & tp.x < 600 & tp.y > 700 & tp.y < 800)
+        if(tp.x > 550 & tp.x < 600 & tp.y > 750 & tp.y < 800)
         {
-          delay(50);
+          delay(timeDelayBetweenGCode);
           if(tp.x > 500 & tp.x < 600 & tp.y > 700 & tp.y < 800) {Serial.println("G21G91G1X1F10");} //Serial.println("Arriba izquierdo");
           // X +
         }
         else if(tp.x > 220 & tp.x < 300 & tp.y > 755 & tp.y < 790)
         {
-          delay(50);
+          delay(timeDelayBetweenGCode);
           if(tp.x > 220 & tp.x < 300 & tp.y > 755 & tp.y < 790) {Serial.println("G21G91G1X-1F10");}//Serial.println("Abajo izquierdo");
           // X -
         }
         else if(tp.x > 300 & tp.x < 400 & tp.y > 800 & tp.y < 900)
         {
-          delay(50);
+          delay(timeDelayBetweenGCode);
           if(tp.x > 300 & tp.x < 400 & tp.y > 800 & tp.y < 900) {Serial.println("G21G91G1Y1F10");}//Serial.println("Izquierdo izquierdo");
           // Y + 
         }
         else if(tp.x > 415 & tp.x < 450 & tp.y > 600 & tp.y < 680)
         {
-          Serial.println("X: " + String(tp.x) + " Y:" + String(tp.y));  
-          delay(50);
+          delay(timeDelayBetweenGCode);
           if(tp.x > 415 & tp.x < 450 & tp.y > 600 & tp.y < 680) {Serial.println("G21G91G1Y-1F10");}//Serial.println("Derecho izquierdo");
           // Y -
         }
         else if(tp.x > 200 & tp.x < 280 & tp.y > 300 & tp.y < 380)
         {
-          delay(50);
+          delay(timeDelayBetweenGCode);
           if(tp.x > 200 & tp.x < 280 & tp.y > 300 & tp.y < 380) {Serial.println("G21G91G1Z1F10");}//Serial.println("Abajo Derecho"); 
           // Z +
         }
         else if(tp.x > 500 & tp.x < 560 & tp.y > 300 & tp.y < 350)
         {
-          delay(50);
+          delay(timeDelayBetweenGCode);
           if(tp.x > 500 & tp.x < 560 & tp.y > 300 & tp.y < 350) {Serial.println("G21G91G1Z-1F10");}//Serial.println("Arriba Derecho");
           // Z - 
         }
         else if(tp.x > 380 & tp.x < 490 & tp.y > 400 & tp.y < 510)
         {
-          delay(50);
-          if(tp.x > 380 & tp.x < 490 & tp.y > 400 & tp.y < 510) Serial.println("Izquierdo Derecho");
+          delay(timeDelayBetweenGCode);
+          if(tp.x > 380 & tp.x < 490 & tp.y > 400 & tp.y < 510) Serial.println("G21G91G1A1F10");
         }
         else if(tp.x > 380 & tp.x < 450 & tp.y > 200 & tp.y < 300)
         {
-          delay(50);
-          if(tp.x > 380 & tp.x < 450 & tp.y > 200 & tp.y < 300) Serial.println("Derecho Derecho");
+          delay(timeDelayBetweenGCode);
+          if(tp.x > 380 & tp.x < 450 & tp.y > 200 & tp.y < 300) Serial.println("G21G91G1A-1F10");
         }
         //Serial.println("Punto x: " + String(tp.x) + "Punto y: " + String(tp.y)); 
   }
@@ -142,7 +142,12 @@ void unEje(String eje)
   tft.setRotation(3);
   tft.setCursor(10, 50);
   tft.setTextSize(4);
-  tft.print(eje);
+  
+  if(eje == "X") tft.print("Prensa");
+  if(eje == "Y") tft.print("Boom");
+  if(eje == "Z") tft.print("Zoom");
+  if(eje == "A") tft.print("Altura");
+  
   tft.setRotation(4);
 
   BOXSIZE = tft.width() / 4;
@@ -171,11 +176,11 @@ void unEje(String eje)
     pinMode(XM, OUTPUT);
     pinMode(YP, OUTPUT);
 
-    Serial.print("X: ");Serial.println(tp.x);
-    Serial.print("Y: ");Serial.println(tp.y);
+    //Serial.print("X: ");Serial.println(tp.x);
+    //Serial.print("Y: ");Serial.println(tp.y);
    if(tp.x > 500 & tp.x < 590 & tp.y > 780 & tp.y < 830)
     {
-      Serial.println("Volver atras");          
+      //Serial.println("Volver atras");          
       delay(400);
       graficaInicial();
       tft.setTextSize(1);
@@ -184,10 +189,12 @@ void unEje(String eje)
     if(tp.x > 450 & tp.x < 550 & tp.y > 580 & tp.y < 640)
     {
       Serial.println("G21G91G1" + eje + "+" + "1F10");
+      delay(timeDelayBetweenGCode);
     }
     if(tp.x > 450 & tp.x < 550 & tp.y > 300 & tp.y < 450)
     {
       Serial.println("G21G91G1" + eje + "-" + "1F10");
+      delay(timeDelayBetweenGCode);
     }
   }
 }
