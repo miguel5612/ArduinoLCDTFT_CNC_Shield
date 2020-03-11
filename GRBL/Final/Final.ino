@@ -71,18 +71,31 @@ void loop() {
     //Serial.print("Limit Y: "); Serial.println(digitalRead(limitY));
     //Serial.print("Limit Z: "); Serial.println(digitalRead(limitZ));
     //Serial.print("Limit A: "); Serial.println(digitalRead(limitA));
-    readedString =  "";
-    while (Serial.available()) {
+    readedString =  ""; int len = 0;
+    while (Serial.available() || len <= 14) {
       delay(3);  //delay to allow buffer to fill
       if (Serial.available() >0) {
         char c = Serial.read();  //gets one byte from serial buffer
         readedString += c; //makes the string readString
+        len ++;
+        if(c == "0") break;
       }
     }
     if(readedString!="")
     {
+      Serial.println(readedString);
       String eje = readedString.substring(8, 9);
       String dir = readedString.substring(9,10);
+      if(readedString.indexOf("X") > 0) eje = "X";
+      if(readedString.indexOf("Y") > 0) eje = "Y";
+      if(readedString.indexOf("Z") > 0) eje = "Z";
+      if(readedString.indexOf("A") > 0) eje = "A";
+
+      if(readedString.indexOf("-") > 0) dir = "-";
+      else dir = "+";
+      
+      
+      Serial.println(readedString);
       Serial.print("Eje: ");
       Serial.println(eje); // optional: repeat back what I got for debugging
       Serial.print("Direccion: ");
